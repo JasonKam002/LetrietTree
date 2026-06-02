@@ -54,12 +54,33 @@ h3 {
   border-radius: 45px;
 }
 
-.header {
+.title {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   margin-bottom: 30px;
+}
+
+.topbar {
+  font-family: 'Manrope', sans-serif;
+  display: flex;
+  gap: 30px;
+  margin: 30px;
+  padding: 20px;
+  background: #0b864d;
+  border-radius: 15px;
+}
+
+.topbar-button {
+  font-size: 15px;
+  background: none;
+  border: none;
+  color: white;
+}
+
+.topbar-button:hover {
+  color: var(--color-brand--1)
 }
 
 /* Form */
@@ -72,7 +93,7 @@ h3 {
 
   height: 23.25rem;
   transition: all 0.5s, transform 1ms;
-  display:none;
+  display:block;
 }
 
 .form.hidden {
@@ -111,8 +132,51 @@ h3 {
   background-color: #fff;
 }
 
-.form__row--hidden {
+.numBird, .form__input--numBird {
   display: none;
+}
+
+.image {
+  font-family: 'Manrope', sans-serif;
+  color:var(--color-dark--1);
+  width: 100px;
+  margin-top: 15px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.submit {
+  font-family: 'Manrope', sans-serif;
+  color:white;
+  background-color: #0b864d;
+  width: 100px;
+  margin-top: 15px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.buttons {
+  display:flex;
+  justify-content:space-between;
+}
+
+/* Search Bar */
+
+.searchBar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#searchID {
+  width: 100%;
+  padding: 0.3rem 1.1rem;
+  font-family: inherit;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--color-light--3);
+  transition: all 0.2s;
 }
 
 /* Description */

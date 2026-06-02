@@ -21,8 +21,15 @@
   <body>
       <div class="sidebar">
         <div class="header">
-          <img src="logo.png" alt="Logo" class="logo" />
-          <h1>Double T Green</h1>
+          <div class="title">
+            <img src="logo.png" alt="Logo" class="logo" />
+            <h1>Double T Green</h1>
+          </div>
+          
+          <div class="topbar">
+            <button class="topbar-button">Logging</button>
+            <button class="topbar-button">Search</button>
+          </div>
         </div>
 
         <ul class="logging">
@@ -36,29 +43,37 @@
               </div>
               <div class="form__row">
                   <label class="form__label">Name of Planter</label>
-                  <input class="form__input form__input--name"/>
+                  <input class="form__input form__input--name" placeholder="e.g. Jason"/>
               </div>
               <div class="form__row">
                   <label class="form__label">Species</label>
-                  <input class="form__input form__input--species"/>
+                  <input class="form__input form__input--species" placeholder="e.g. Oak/ Eagle"/>
               </div>
               <div class="form__row">
                 <label class="form__label age">Date planted</label>
                 <input
-                  class="form__input form__input--age"
+                  class="form__input form__input--age";
+                  placeholder="e.g. 2026-02-06"
                 />
               </div>
-              <div class="form__row form__row--hidden">
+              <div class="form__row">
                 <label class="form__label numBird">Number of birds</label>
                 <input
-                  class="form__input form__input--numBird"
+                  class="form__input form__input--numBird";
+                  placeholder="e.g. 4"
                 />
               </div>
-              <button class="image">Upload image</button>
-              <br>
-              <button type="submit">Submit</button>
+              <div class="buttons">
+                <button class="image">Upload image</button>
+                <button class="submit" type="submit">Submit</button>
+              </div>
               </form>
         </ul>
+
+        <div class="searchBar">
+          <label class="form__label">Search</label>
+          <input id="searchID" placeholder="name/ species">
+        </div>
 
         <div class="description">
           <h1>Description of </h1>
@@ -78,6 +93,7 @@
           </div>
         </div>
       </div>
+
           
 
       <div id="map"></div>
