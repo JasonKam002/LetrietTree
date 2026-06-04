@@ -65,6 +65,7 @@ h3 {
 .topbar {
   font-family: 'Manrope', sans-serif;
   display: flex;
+  justify-content: space-around;
   gap: 30px;
   margin: 30px;
   padding: 20px;
@@ -73,7 +74,8 @@ h3 {
 }
 
 .topbar-button {
-  font-size: 15px;
+  font-size: 20px;
+  font-weight: bold;
   background: none;
   border: none;
   color: white;
@@ -91,7 +93,7 @@ h3 {
   padding: 1.5rem 2.75rem;
   margin-bottom: 1.75rem;
 
-  height: 23.25rem;
+  height: 27.5rem;
   transition: all 0.5s, transform 1ms;
   display:block;
 }
@@ -155,9 +157,9 @@ h3 {
   margin-right: 10px;
 }
 
-.buttons {
-  display:flex;
-  justify-content:space-between;
+.submit:hover {
+  background-color: #0c5231;     
+  transform: translateY(-1px);
 }
 
 /* Search Bar */
@@ -166,6 +168,7 @@ h3 {
   display: flex;
   gap: 10px;
   align-items: center;
+  display: none;
 }
 
 #searchID {
@@ -179,19 +182,10 @@ h3 {
   transition: all 0.2s;
 }
 
-/* Description */
-
-.description {
-  display: none;
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.list {
-  margin-bottom: 20px;
+#results {
+  width: 400px;
+  height: 450px;
+  overflow: auto;
 }
 
 /* Sidebar */
@@ -225,4 +219,24 @@ h3 {
 .cycling-popup .leaflet-popup-content-wrapper {
     border-left: 5px solid var(--color-brand--1);
   }
+
+
+.details {
+  background-color: #42484d;
+  border-radius: 15px;
+  margin-top: 10px;
+  padding: 30px;
+}
+
+.tree__title {
+  font-size: 20px;
+}
+
+.tree__details {
+  font-size: 15px;
+}
+
+.treeImg {
+  height: 200px;
+}
   

@@ -24,11 +24,12 @@
           <div class="title">
             <img src="logo.png" alt="Logo" class="logo" />
             <h1>Double T Green</h1>
+            <h3>Charlottetown Rural Highschool</h3>
           </div>
           
           <div class="topbar">
-            <button class="topbar-button">Logging</button>
-            <button class="topbar-button">Search</button>
+            <button class="topbar-button" id="record">Record</button>
+            <button class="topbar-button" id="search">Search</button>
           </div>
         </div>
 
@@ -64,33 +65,20 @@
                 />
               </div>
               <div class="buttons">
-                <button class="image">Upload image</button>
+                <label for="image" class="form__label">Upload Image</label>
+                <input type="file" id="image" accept="image/*">
                 <button class="submit" type="submit">Submit</button>
               </div>
               </form>
         </ul>
 
         <div class="searchBar">
-          <label class="form__label">Search</label>
-          <input id="searchID" placeholder="name/ species">
-        </div>
-
-        <div class="description">
-          <h1>Description of </h1>
-          <div class="list">
-            <h3>Type: </h3>
-            <h3>Age: </h3>
-            <h3>Species: </h3>
-            <h3>Planter: </h3>
-            <h3>Location: </h3>
-          </div>
-
-          <div class="gallery">
-            <img class="img" src="template.png">
-            <img class="img" src="template.png">
-            <img class="img" src="template.png">
-            <img class="img" src="template.png">
-          </div>
+          <form>
+            <label class="form__label">Search</label>
+            <input id="searchID" placeholder="name/ species">
+            <button type='submit' class="submit" id="searchBtn">Search</button>
+          </form>
+          <div id="results"></div>
         </div>
       </div>
 

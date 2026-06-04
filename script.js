@@ -5,7 +5,8 @@ const inputName = document.querySelector(".form__input--name");
 const inputSpecies = document.querySelector(".form__input--species");
 const inputAge = document.querySelector(".form__input--age");
 const inputNumBird = document.querySelector(".form__input--numBird");
-const inputSearch = document.getElementById("#searchID");
+const inputSearch = document.getElementById("searchID");
+const imageInput = document.getElementById('image');
 
 let map
 let mapEvent
@@ -31,6 +32,7 @@ class log {
   date = new Date();
   id = (Date.now() + "").slice(-10);
   category =  ''
+  image = []
   constructor(coords, name, species) {}
 }
 
@@ -59,19 +61,69 @@ class tree extends log {
   }
 }
 
+// 46.258903,-63.1474395
+// const latitude = position.coords.latitude;
+//       const longtitude = position.coords.longitude;
+
 //map
 navigator.geolocation.getCurrentPosition(
     function (position) {
       console.log(position);
-      const latitude = position.coords.latitude;
-      const longtitude = position.coords.longitude;
+      const latitude = 46.258903;
+      const longtitude = -63.1474395;
   
-      map = L.map("map").setView([latitude, longtitude], 13);
+      map = L.map("map").setView([latitude, longtitude], 100);
   
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
+
+
+      //differrent map tile
+//       var googleSat = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+//     maxZoom: 20,
+//     subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+//     attribution: '&copy; <a href="https://maps.google.com">Google Maps</a>'
+// }).addTo(map);
+
+      const data = JSON.parse(localStorage.getItem("logs"))
+
+        if (data) {
+            logs = data
+            console.log(logs)
+        }
+
+        for (const log of logs) {
+          let lat = log.coords[0]
+          let lng = log.coords[1]
+          
+          
+          
+          if (log.category === 'tree') {
+            L.marker([lat, lng], {icon: treeIcon}).addTo(map)
+                .bindPopup(L.popup({
+                    maxWidth:250,
+                    minWidth:100,
+                    autoClose:false,
+                    closeOnClick:false,
+                    className: "log-popup",
+                }))
+                .setPopupContent(`Log by ${log.name} of ${log.category}`)
+                .openPopup();
+          } else if (log.category ==='bird') {
+            L.marker([lat, lng], {icon: birdIcon}).addTo(map)
+                .bindPopup(L.popup({
+                    maxWidth:250,
+                    minWidth:100,
+                    autoClose:false,
+                    closeOnClick:false,
+                    className: "log-popup",
+                }))
+                .setPopupContent(`Log by ${log.name} of ${log.category}`)
+                .openPopup();
+          }
+        }
       
 
       map.on('click', function(mapE) {
@@ -81,17 +133,17 @@ navigator.geolocation.getCurrentPosition(
     }
   )
 
+// top bar
 
-// form event listener
+document.querySelector('#record').addEventListener('click', function() {
+  document.querySelector('.searchBar').style.display = 'none'
+  document.querySelector('.form').style.display = 'block'
+})
 
-/*form.addEventListener('submit', function(e){
-  e.preventDefault()
-
-  if (inputCategory.type == 'tree') {
-    inputNumBird.visibility = 'hidden'
-  }
-  }
-)*/
+document.querySelector('#search').addEventListener('click', function() {
+  document.querySelector('.searchBar').style.display = 'block'
+  document.querySelector('.form').style.display = 'none'
+})
 
 // change type
 
@@ -110,23 +162,19 @@ inputCategory.addEventListener('change', function(){
     inputAge.style.display = 'none'
     document.querySelector('.age').style.display = 'none'
   }
-
-  // const numBirdRow = inputNumBird.closest(".form_row")
-  // const ageRow = inputAge.closest(".form_row")
-
-  // if (inputCategory.value === 'tree') {
-  //   ageRow.classList.remove("form__row--hidden")
-  //   numBirdRow.classList.add("form__row--hidden")
-  //   console.log("1")
-  // }
-
-  // if (inputCategory.value === 'bird') {
-  //   ageRow.classList.add("form__row--hidden")
-  //   numBirdRow.classList.remove("form__row--hidden")
-  //   console.log("2")
-  // }
-
 }) 
+
+// upload image
+
+let temporaryImage = []
+
+  imageInput.addEventListener('change', function() {
+    const file = this.files[0]
+  
+    if (file) {
+      temporaryImage.push(URL.createObjectURL(file))
+    }
+  })
 
 //submit btn
 
@@ -178,13 +226,144 @@ form.addEventListener("submit", function(e){
     .openPopup();
   }
 
+  if (log && log.image) {
+    log.image = [...temporaryImage]; 
+  }
+
   logs.push(log)
+  localStorage.setItem("logs", JSON.stringify(logs))
+  form.reset()
+  temporaryImage = []
 
   console.log(logs)
 })
 
+document.querySelector("#searchBtn").addEventListener("click", function(e) {
+  e.preventDefault()
+  const search = inputSearch.value.toLowerCase()
+  const matches = []
+    for (log of logs) {
+      if (log.name.toLowerCase().includes(search) || log.species.toLowerCase().includes(search)) {
+        matches.push(log)
+      }
+    }
+  console.log(matches)
 
-inputSearch.addEventListener("input", function(e) {
 
-  
+
+  const resultDiv = document.querySelector("#results")
+
+  resultDiv.innerHTML = ""
+
+  if (matches.length === 0) {
+    resultDiv.innerHTML = `No matches found`
+  }
+
+  for (const log of matches) {
+    if (log.category === 'tree') {
+        resultDiv.innerHTML +=
+
+    `<div class="details">
+
+        <h2 class="tree__title">
+            🌳 ${log.name}
+        </h2>
+
+        <div class="tree__details">
+            <span class="tree__label">
+                Species:
+            </span>
+
+            <span class="tree__value">
+                ${log.species}
+            </span>
+        </div>
+
+        <div class="tree__details">
+            <span class="tree__label">
+                Date planted:
+            </span>
+
+            <span class="tree__value">
+                ${log.age}
+            </span>
+        </div>
+
+        <div class="tree__details">
+            <span class="tree__label">
+                Latitude:
+            </span>
+
+            <span class="tree__value">
+                ${log.coords[0]}
+            </span>
+        </div>
+
+        <div class="tree__details">
+            <span class="tree__label">
+                Longitude:
+            </span>
+
+            <span class="tree__value">
+                ${log.coords[1]}
+            </span>
+        </div>
+
+        <img class="treeImg" src="${log.image[0]}">
+
+    </div>
+    `
+  } else if (log.category === 'bird') {
+    resultDiv.innerHTML += `<div class="details">
+
+        <h2 class="tree__title">
+          🐦 ${log.name}
+        </h2>
+
+        <div class="tree__details">
+            <span class="tree__label">
+                Species:
+            </span>
+
+            <span class="tree__value">
+                ${log.species}
+            </span>
+        </div>
+
+        <div class="tree__details">
+            <span class="tree__label">
+                Age:
+            </span>
+
+            <span class="tree__value">
+                ${log.numBird}
+            </span>
+        </div>
+
+        <div class="tree__details">
+            <span class="tree__label">
+                Latitude:
+            </span>
+
+            <span class="tree__value">
+                ${log.coords[0]}
+            </span>
+        </div>
+
+        <div class="tree__details">
+            <span class="tree__label">
+                Longitude:
+            </span>
+
+            <span class="tree__value">
+                ${log.coords[1]}
+            </span>
+        </div>
+
+        <img class="treeImg" src="${log.image[0]}">
+
+    </div>
+    `
+  }
+  }
 })
