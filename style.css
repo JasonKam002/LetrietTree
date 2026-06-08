@@ -23,23 +23,23 @@ html {
 #map {
   flex: 1;
   flex-direction: column;
-  width:auto;
+  width: auto;
   background-color: var(--color-light--1);
 }
 
 body {
-font-family: 'Manrope', sans-serif;
-color: var(--color-light--2);
-font-weight: 400;
-line-height: 1.6;
-height: 100vh;
-flex-direction: column;
-overscroll-behavior-y: none;
+  font-family: "Manrope", sans-serif;
+  color: var(--color-light--2);
+  font-weight: 400;
+  line-height: 1.6;
+  height: 100vh;
+  flex-direction: column;
+  overscroll-behavior-y: none;
 
-background-color: rgb(255, 255, 255);
-padding: 2.5rem;
+  background-color: rgb(255, 255, 255);
+  padding: 2.5rem;
 
-display: flex;
+  display: flex;
 }
 
 h3 {
@@ -51,7 +51,7 @@ h3 {
 .logo {
   height: 8rem;
   align-self: center;
-  
+
   background-color: white;
   border-radius: 45px;
 }
@@ -65,7 +65,7 @@ h3 {
 }
 
 .topbar {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   display: flex;
   justify-content: space-around;
   gap: 30px;
@@ -84,7 +84,7 @@ h3 {
 }
 
 .topbar-button:hover {
-  color: var(--color-brand--1)
+  color: var(--color-brand--1);
 }
 
 /* Form */
@@ -97,7 +97,7 @@ h3 {
 
   height: 25.5rem;
   transition: all 0.5s, transform 1ms;
-  display:block;
+  display: block;
 }
 
 .form.hidden {
@@ -136,13 +136,14 @@ h3 {
   background-color: #fff;
 }
 
-.numBird, .form__input--numBird {
+.numBird,
+.form__input--numBird {
   display: none;
 }
 
 .image {
-  font-family: 'Manrope', sans-serif;
-  color:var(--color-dark--1);
+  font-family: "Manrope", sans-serif;
+  color: var(--color-dark--1);
   width: 100px;
   margin-top: 15px;
   padding: 5px;
@@ -150,8 +151,8 @@ h3 {
 }
 
 .submit {
-  font-family: 'Manrope', sans-serif;
-  color:white;
+  font-family: "Manrope", sans-serif;
+  color: white;
   background-color: #0b864d;
   width: 100px;
   margin-top: 15px;
@@ -160,7 +161,7 @@ h3 {
 }
 
 .submit:hover {
-  background-color: #0c5231;     
+  background-color: #0c5231;
   transform: translateY(-1px);
 }
 
@@ -195,33 +196,32 @@ h3 {
 .sidebar {
   flex-basis: 50rem;
   background-color: var(--color-dark--1);
-  padding: 3rem 5rem 4rem 5rem;
+  padding: 3rem 5rem 0.5rem 5rem;
   display: flex;
   flex-direction: column;
 }
 
 .leaflet-popup .leaflet-popup-content-wrapper {
-    background-color: var(--color-dark--1);
-    color: var(--color-light--2);
-    border-radius: 5px;
-    padding-right: 0.6rem;
-  }
-  
-.leaflet-popup .leaflet-popup-content {
-    font-size: 1.5rem;
-  }
-  
-.leaflet-popup .leaflet-popup-tip {
-    background-color: var(--color-dark--1);
-  }
-  
-.running-popup .leaflet-popup-content-wrapper {
-    border-left: 5px solid var(--color-brand--2);
-  }
-.cycling-popup .leaflet-popup-content-wrapper {
-    border-left: 5px solid var(--color-brand--1);
-  }
+  background-color: var(--color-dark--1);
+  color: var(--color-light--2);
+  border-radius: 5px;
+  padding-right: 0.6rem;
+}
 
+.leaflet-popup .leaflet-popup-content {
+  font-size: 1.5rem;
+}
+
+.leaflet-popup .leaflet-popup-tip {
+  background-color: var(--color-dark--1);
+}
+
+.running-popup .leaflet-popup-content-wrapper {
+  border-left: 5px solid var(--color-brand--2);
+}
+.cycling-popup .leaflet-popup-content-wrapper {
+  border-left: 5px solid var(--color-brand--1);
+}
 
 .details {
   background-color: #42484d;
@@ -241,4 +241,3 @@ h3 {
 .treeImg {
   height: 200px;
 }
-  
