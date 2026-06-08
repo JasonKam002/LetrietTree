@@ -189,7 +189,7 @@ form.addEventListener("submit", function(e){
   let log 
 
   if (inputCategory.value === 'tree') {
-    const age = Number(inputAge.value)
+    const age = inputAge.value
     log = new tree([lat, lng],name,species,age)
 
     L.marker([lat, lng], {icon: treeIcon})
